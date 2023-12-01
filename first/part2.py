@@ -18,6 +18,7 @@ def find_all(line, substring):
         start += len(substring)
 
 def parse_line(line: str) -> list:
+    print(f"Line: {line}", end="")
     parts = []
     for key, value in INT_DICT.items():
         if key in line:
@@ -28,6 +29,10 @@ def parse_line(line: str) -> list:
         if char in digits:
             parts.append((i, char))
     parts.sort(key=get_index)
+    print("Numbers: ", end="")
+    for i in parts:
+        print(i[1], end="")
+    print()
     return parts
 
 
