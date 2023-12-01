@@ -14,7 +14,7 @@ def combine_integers(line: str) -> int:
     else:
         return integers[0] + integers[-1]
     
-# return a 
+# Returns a sum of all digits in a list
 def sum_str(integers: list) -> int:
     sum = 0
     for integer in integers:
@@ -22,7 +22,7 @@ def sum_str(integers: list) -> int:
     return sum
 
 def main():
-    lines = read_file("input.txt")
+    lines = read_file("first/input.txt")
     integers = [combine_integers(line) for line in lines]
     sum = sum_str(integers)
     print (sum)

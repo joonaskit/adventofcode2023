@@ -43,7 +43,7 @@ def sum(lines: list) -> int:
     return sum
 
 def main():
-    lines = read("input.txt")
+    lines = read("first/input.txt")
     print(sum(lines))
 
 main()
