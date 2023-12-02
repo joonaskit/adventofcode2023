@@ -2,7 +2,7 @@
 # contained only 12 red cubes, 13 green cubes, and 14 blue cubes?
 
 from string import digits
-
+# 12 red cubes, 13 green cubes, and 14 blue cubes
 _MAX_COLORS = {'green':13, 'blue':14, 'red':12}
 
 def read_file(filename: str) -> list:
@@ -24,8 +24,8 @@ def parse_round(round: str, values: dict):
         if tmp[1].strip() in values:
             if values[tmp[1].strip()] < int(tmp[0].strip()):
                 values[tmp[1].strip()] = int(tmp[0].strip())
-            else:
-                values[tmp[1].strip()] = int(tmp[0].strip())
+        else:
+            values[tmp[1].strip()] = int(tmp[0].strip())
 
     
 def parse_colors(game: str) -> dict:
@@ -51,21 +51,14 @@ def possible(game: dict) -> bool:
             return False
     return True
 
-def print_games(games: list) -> None:
-    for game in games:
-        if possible(game[1]):
-            print(f"Game: {game[0]}: {game[1]} TRUE")
-        else:
-            print(f"Game: {game[0]}: {game[1]} FALSE")
-
 def main():
-    lines = read_file("2nd/input2.txt")
+    lines = read_file("2nd/input.txt")
     games = [parse_game(line) for line in lines]
-    print_games(games)
     sum = 0
     for game in games:
         if possible(game[1]):
             sum += game[0]
+            print(f"Game: {game[0]}: {game[1]} TRUE and sum {sum}")
     print(sum)
 
 main()
