@@ -35,7 +35,6 @@ def parse_line(line: str) -> list:
     print()
     return parts
 
-
 def sum(lines: list) -> int:
     ints = []
     sum = 0
