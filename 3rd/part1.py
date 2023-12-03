@@ -5,7 +5,8 @@ all_numbers = []
 
 def read_file(filename: str)-> list:
     with open(filename, 'r') as file:
-        return file.readlines()
+        tmp = file.readlines()
+        return [line.strip() for line in tmp]
     
 def search_symbol(lines: list, line: str, i: int):
     for j, char in enumerate(line):
@@ -49,7 +50,7 @@ def part_ok(number: list, lines: list) -> bool:
             return True
     
     # check right
-    if (number[0][1] + len(number[1])) < len(lines[0]) + 1:
+    if (number[0][1] + len(number[1]) + 1) < len(lines[number[0][0]]):
         if lines[number[0][0]][number[0][1] + len(number[1])] != '.' and lines[number[0][0]][number[0][1] + len(number[1])] not in digits:
             return True
         
@@ -59,21 +60,21 @@ def part_ok(number: list, lines: list) -> bool:
             if(lines[number[0][0] - 1][i] != '.' and lines[number[0][0] - 1][i] not in digits):
                 return True
         # diagonally right
-        if (number[0][1] + len(number[1])) < len(lines[0]) + 1:
-            if lines[number[0][0] - 1][number[0][1] + len(number[1])] != '.' and lines[number[0][0] + 1][number[0][1] + len(number[1])] not in digits:
+        if (number[0][1] + len(number[1])) < len(lines[0]):
+            if lines[number[0][0] - 1][number[0][1] + len(number[1])] != '.' and lines[number[0][0] - 1][number[0][1] + len(number[1])] not in digits:
                 return True
         # diagonally left
         if number[0][1] > 0:
-            if lines[number[0][0] - 1][(number[0][1] - 1)] != '.' and lines[number[0][0] + 1][(number[0][1] - 1)] not in digits:
+            if lines[number[0][0] - 1][(number[0][1] - 1)] != '.' and lines[number[0][0] - 1][(number[0][1] - 1)] not in digits:
                 return True
 
     # check below
-    if number[0][0] < len(lines) + 1:
+    if number[0][0] + 1 < len(lines):
         for i in range(number[0][1],len(number[1]) + number[0][1]):
             if(lines[number[0][0] + 1][i] != '.' and lines[number[0][0] + 1][i] not in digits):
                 return True
         # diagonally right
-        if (number[0][1] + len(number[1])) < len(lines[0]) + 1:
+        if (number[0][1] + len(number[1])) < len(lines[0]):
             if lines[number[0][0] + 1][number[0][1] + len(number[1])] != '.' and lines[number[0][0] + 1][number[0][1] + len(number[1])] not in digits:
                 return True
         # diagonally left
@@ -82,7 +83,6 @@ def part_ok(number: list, lines: list) -> bool:
                 return True
     
     return False
-
 
 def check_engine_parts(lines: list):
     parts = []
@@ -108,7 +108,7 @@ def sum_values(values):
 
 
 def main():
-    lines = read_file('3rd/input2.txt')
+    lines = read_file('3rd/input.txt')
     for y, line in enumerate(lines):
         gather_numbers(y, line)
     parts = check_engine_parts(lines)
