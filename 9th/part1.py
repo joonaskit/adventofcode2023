@@ -1,4 +1,4 @@
-_EXAMPLE = [[0,3,6,9,12,15], [1,3,6,10,15,21], [10,13,16,21,30,45]]
+_EXAMPLE = [[3,2,1], [1,2,3]]
 
 def read_file(filename: str) -> list: 
     with open(filename, 'r') as file:
@@ -36,7 +36,7 @@ def test():
     print(sum(sums))
 
 def main():
-    lines = read_file("9th/input.txt")
+    lines = read_file("input.txt")
     values = [parse_line(line) for line in lines]
     print(values)
     pyramids = [calculate_values(list) for list in values]
