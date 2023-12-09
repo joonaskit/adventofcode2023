@@ -7,5 +7,31 @@ def read_file(filename: str) -> list:
 def parse_line(line: str) -> list:
     pass
 
-def calculate_next(line: list) -> int: 
-    pass
+def calculate_values(line: list) -> list: 
+    values = []
+    values.append(line)
+    while sum(values[-1]) != 0:
+        tmp = []
+        for i, value in enumerate(values[-1]):
+            if i + 1 < len(values[-1]):
+                tmp.append(values[-1][i+1] - value)
+        values.append(tmp)
+    return values
+
+def calculate_next(values: list) -> int: 
+    sum = 0
+    for value in values:
+        sum += value[-1]
+    return sum
+
+def test():
+    pyramids = []
+    for list in _EXAMPLE:
+        pyramids.append(calculate_values(list))
+    sums = []
+    for pyramid in pyramids:
+        sums.append(calculate_next(pyramid))
+    print(sums)
+    print(sum(sums))
+
+test()
