@@ -5,7 +5,8 @@ def read_file(filename: str) -> list:
         return file.readlines()
     
 def parse_line(line: str) -> list:
-    pass
+    tmp = line.split(" ")
+    return [int(value.strip()) for value in tmp]
 
 def calculate_values(line: list) -> list: 
     values = []
@@ -34,4 +35,14 @@ def test():
     print(sums)
     print(sum(sums))
 
-test()
+def main():
+    lines = read_file("9th/input.txt")
+    values = [parse_line(line) for line in lines]
+    print(values)
+    pyramids = [calculate_values(list) for list in values]
+    print(pyramids)
+    sums = [calculate_next(pyramid) for pyramid in pyramids]
+    print(sums)
+    print(sum(sums))
+
+main()
