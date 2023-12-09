@@ -1,5 +1,4 @@
-races = [(44, 277), (89, 1136), (96, 1890), (91, 1768)]
-races2 = [(7, 9), (15, 40), (30, 200)]
+from input import races_part1
 
 # (time, distance) | (ms, mm)
 # s = vt
@@ -17,7 +16,7 @@ def calculate_margin(pair: tuple) -> int:
     return margin
 
 def main():
-    margins = [calculate_margin(race) for race in races]
+    margins = [calculate_margin(race) for race in races_part1]
     print(f"{margins}")
     multiplication = 1
     for margin in margins:
